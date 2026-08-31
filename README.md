@@ -43,3 +43,6 @@ ERC/Veugelers et al. (Row 29) — all built on confidential agency records
 
 Rows 3, 4, 5, 6, 7, 10, 11, 13, 15, 17, 20, 22, 27 from the master literature
 table have not had their data-availability status individually verified.
+
+## CORDIS funded-proposal corpus
+`data/horizon_funded_corpus.xlsx` — 23,258 funded Horizon projects (title, abstract, participants, funding, coordinator, topic code). Bulk export from CORDIS, CC-BY. The "what winning proposals looked like" dataset.
