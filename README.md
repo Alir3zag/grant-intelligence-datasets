@@ -63,14 +63,7 @@ Dashboard snapshot/data refresh: **31 July 2026**.
 | `data/ec-dashboard/h2020-germany/` | H2020, Germany only |
 | `data/ec-dashboard/h2020-all-countries/` | H2020, all countries |
 
-### Horizon Europe
-
-| Folder | Scope |
-|---|---|
-| `data/ec-dashboard/he-germany/` | Horizon Europe, Germany only |
-| `data/ec-dashboard/he-all-countries/` | Horizon Europe, all countries |
-
-Each dashboard folder contains 7 exported tables:
+Each folder contains 7 exported tables:
 
 - `EligibleProposals-KPI`
 - `EligibleApplications-KPI`
@@ -80,8 +73,42 @@ Each dashboard folder contains 7 exported tables:
 - `ProposalStats-byCallID`
 - `SuccessRate-byThematicPriority`
 
-`ProposalStats-byCallID` is the core table for submitted proposals, funded
-proposals, and success rates by Call ID.
+### Horizon Europe
+
+| Folder | Scope |
+|---|---|
+| `data/ec-dashboard/he-germany/` | Horizon Europe, Germany only |
+| `data/ec-dashboard/he-all-countries/` | Horizon Europe, all countries |
+
+Each folder contains the same 7 exported tables as the H2020 exports above.
+
+### All Programmes (H2020 + FP7 + Horizon Europe combined)
+
+Unlike the H2020 and Horizon Europe exports above (each scoped to a single
+programme), these folders combine all three programmes — H2020, FP7, and
+Horizon Europe — in a single view, filtered only by geography.
+
+| Folder | Scope |
+|---|---|
+| `data/ec-dashboard/allprogrammes-germany/` | All Programmes, Germany only |
+| `data/ec-dashboard/allprogrammes-all-countries/` | All Programmes, all countries |
+
+Each folder contains 7 exported tables:
+
+- `EligibleProposals-KPI`
+- `EligibleApplications-KPI`
+- `EligibleEUContribution-KPI`
+- `EUContribution-byOrgType`
+- `SuccessRate-byProgramme` — retained proposals, non-successful eligible
+  proposals, and success rate broken out per programme (H2020 / FP7 /
+  Horizon Europe), rather than by thematic priority
+- `ProposalStats-byCallID`
+- `CountryBreakdown` (all-countries export) or `NUTS1Breakdown`
+  (Germany export) — regional/geographic split at the level appropriate
+  to the scope of the export
+
+File naming pattern: `<Scope>-AllProgrammes-<TableName>-AlirezaEftekhar-<DDMMYY>.xlsx`,
+e.g. `Germany-AllProgrammes-ProposalStats-byCallID-AlirezaEftekhar-020926.xlsx`.
 
 ### Methodological note
 
@@ -95,11 +122,16 @@ preferred over the dashboard call-level rate.
 
 For Horizon Europe 2025–2027, the **all-countries** exports are the primary
 source because they provide larger sample sizes. Germany-only exports are
-retained for German-specific analysis and regional context.
+retained for German-specific analysis and regional context. The same applies
+to the All Programmes exports.
 
 The H2020 exports are historical predecessor evidence and may be used as a
 proxy for unclosed Horizon Europe topics when a comparable completed call
 exists. They should not be treated as direct Horizon Europe success rates.
+The All Programmes exports, since they blend H2020, FP7, and Horizon Europe
+figures together, should likewise not be treated as a direct Horizon Europe
+success rate on their own — use `SuccessRate-byProgramme` to isolate the
+Horizon Europe-only figures within that export where needed.
 
 ## Evidence hierarchy for success rates
 
@@ -124,7 +156,9 @@ grant-intelligence-datasets/
     │   ├── h2020-germany/
     │   ├── h2020-all-countries/
     │   ├── he-germany/
-    │   └── he-all-countries/
+    │   ├── he-all-countries/
+    │   ├── allprogrammes-germany/
+    │   └── allprogrammes-all-countries/
     ├── horizon_funded_corpus.xlsx
     ├── heinze-2025-excellence-replication/
     ├── pina-2021-marie-curie-scores.xlsx
@@ -132,3 +166,4 @@ grant-intelligence-datasets/
     ├── pina-2021-tables-a1-a2.docx
     ├── recio-saucedo-2022-tables.docx
     └── rusu-2022-romania-survey.xlsx
+```
