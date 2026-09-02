@@ -45,4 +45,16 @@ Rows 3, 4, 5, 6, 7, 10, 11, 13, 15, 17, 20, 22, 27 from the master literature
 table have not had their data-availability status individually verified.
 
 ## CORDIS funded-proposal corpus
+
 `data/horizon_funded_corpus.xlsx` — 23,258 funded Horizon projects (title, abstract, participants, funding, coordinator, topic code). Bulk export from CORDIS, CC-BY. The "what winning proposals looked like" dataset.
+
+## EC R&I Proposals dashboard exports — H2020
+
+Source: [EC R&I Proposals Dashboard](https://dashboard.tech.ec.europa.eu/qs_digit_dashboard_mt/public/sense/app/28b39a3a-4d62-4180-9dfa-551489b06928/sheet/9ccb6c45-f749-4b6a-aecd-eeb2868d5916/state/analysis) — official European Commission dashboard, H2020 proposal and success-rate statistics. Each folder below contains 7 tables: regional/country breakdown, proposal stats by Call ID, EU contribution by organisation type, success rate by thematic priority, and 3 KPI summaries (eligible proposals, eligible applications, eligible EU contribution).
+
+| Folder | Scope |
+|---|---|
+| `data/ec-dashboard-h2020-germany/` | H2020, Germany only |
+| `data/ec-dashboard-h2020-all-countries/` | H2020, all countries |
+
+These serve as predecessor-evidence sources for the Horizon Europe 2026–2027 success-rate audit — used to estimate rates for unclosed topics by matching to a completed H2020 call on the same subject and instrument.
