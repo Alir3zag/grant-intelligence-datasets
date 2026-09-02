@@ -46,15 +46,89 @@ table have not had their data-availability status individually verified.
 
 ## CORDIS funded-proposal corpus
 
-`data/horizon_funded_corpus.xlsx` — 23,258 funded Horizon projects (title, abstract, participants, funding, coordinator, topic code). Bulk export from CORDIS, CC-BY. The "what winning proposals looked like" dataset.
+`data/horizon_funded_corpus.xlsx` — 23,258 funded Horizon projects containing
+title, abstract, participants, funding, coordinator, and topic code. Bulk export
+from CORDIS, CC-BY. This is the **"what winning proposals looked like"** dataset.
 
-## EC R&I Proposals dashboard exports — H2020
+## EC R&I Proposals Dashboard exports
 
-Source: [EC R&I Proposals Dashboard](https://dashboard.tech.ec.europa.eu/qs_digit_dashboard_mt/public/sense/app/28b39a3a-4d62-4180-9dfa-551489b06928/sheet/9ccb6c45-f749-4b6a-aecd-eeb2868d5916/state/analysis) — official European Commission dashboard, H2020 proposal and success-rate statistics. Each folder below contains 7 tables: regional/country breakdown, proposal stats by Call ID, EU contribution by organisation type, success rate by thematic priority, and 3 KPI summaries (eligible proposals, eligible applications, eligible EU contribution).
+Source: [EC R&I Proposals Dashboard](https://dashboard.tech.ec.europa.eu/qs_digit_dashboard_mt/public/sense/app/28b39a3a-4d62-4180-9dfa-551489b06928/sheet/9ccb6c45-f749-4b6a-aecd-eeb2868d5916/state/analysis) — official European Commission dashboard containing proposal, funding, and success-rate statistics.
+
+Dashboard snapshot/data refresh: **31 July 2026**.
+
+### H2020
 
 | Folder | Scope |
 |---|---|
-| `data/ec-dashboard-h2020-germany/` | H2020, Germany only |
-| `data/ec-dashboard-h2020-all-countries/` | H2020, all countries |
+| `data/ec-dashboard/h2020-germany/` | H2020, Germany only |
+| `data/ec-dashboard/h2020-all-countries/` | H2020, all countries |
 
-These serve as predecessor-evidence sources for the Horizon Europe 2026–2027 success-rate audit — used to estimate rates for unclosed topics by matching to a completed H2020 call on the same subject and instrument.
+### Horizon Europe
+
+| Folder | Scope |
+|---|---|
+| `data/ec-dashboard/he-germany/` | Horizon Europe, Germany only |
+| `data/ec-dashboard/he-all-countries/` | Horizon Europe, all countries |
+
+Each dashboard folder contains 7 exported tables:
+
+- `EligibleProposals-KPI`
+- `EligibleApplications-KPI`
+- `EligibleEUContribution-KPI`
+- `EUContribution-byOrgType`
+- `NUTS1-RegionalBreakdown`
+- `ProposalStats-byCallID`
+- `SuccessRate-byThematicPriority`
+
+`ProposalStats-byCallID` is the core table for submitted proposals, funded
+proposals, and success rates by Call ID.
+
+### Methodological note
+
+The EC dashboard reports success rates primarily at **Call ID level**, not
+necessarily at individual **Topic ID level**. For multi-topic calls, the
+reported rate can therefore be a blended call-level rate.
+
+Where official topic-level results are available through European Commission
+or agency **Flash Call Info / call-results** publications, those should be
+preferred over the dashboard call-level rate.
+
+For Horizon Europe 2025–2027, the **all-countries** exports are the primary
+source because they provide larger sample sizes. Germany-only exports are
+retained for German-specific analysis and regional context.
+
+The H2020 exports are historical predecessor evidence and may be used as a
+proxy for unclosed Horizon Europe topics when a comparable completed call
+exists. They should not be treated as direct Horizon Europe success rates.
+
+## Evidence hierarchy for success rates
+
+When determining the success rate for a target call/topic, use the following
+order:
+
+1. **Official topic-level Flash Call Info / call-results**
+2. **EC R&I Proposals Dashboard — Call ID level**
+3. **Historical H2020 comparable call**
+4. **Unavailable — leave blank**
+
+Do not backfill missing values with estimates when no defensible evidence
+exists.
+
+## Dataset structure
+
+```text
+grant-intelligence-datasets/
+├── README.md
+└── data/
+    ├── ec-dashboard/
+    │   ├── h2020-germany/
+    │   ├── h2020-all-countries/
+    │   ├── he-germany/
+    │   └── he-all-countries/
+    ├── horizon_funded_corpus.xlsx
+    ├── heinze-2025-excellence-replication/
+    ├── pina-2021-marie-curie-scores.xlsx
+    ├── pina-2021-reporting-form.pdf
+    ├── pina-2021-tables-a1-a2.docx
+    ├── recio-saucedo-2022-tables.docx
+    └── rusu-2022-romania-survey.xlsx
